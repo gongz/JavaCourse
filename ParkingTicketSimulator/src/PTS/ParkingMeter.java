@@ -1,3 +1,4 @@
+package PTS;
 
 public class ParkingMeter {
 	private double minutesPurchased;

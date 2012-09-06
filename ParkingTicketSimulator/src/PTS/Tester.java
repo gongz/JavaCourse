@@ -1,3 +1,4 @@
+package PTS;
 
 public class Tester {
 	//source code
@@ -11,10 +12,21 @@ public class Tester {
 	public static void testRunner(ParkedCar car, ParkingMeter meter,PoliceOfficer officer){
 		if(officer.isExpired(car, meter)){
 			ParkingTicket ticket = officer.issueTicket(car, meter);
-			System.out.println("Following amount fine is issued: $"+ ticket.getFine());
-			System.out.println("to "+ ticket.getIllegalCar().getColor()+" "+ticket.getIllegalCar().getMake()+
-					" "+ticket.getIllegalCar().getModel()+" "+ticket.getIllegalCar().getLicenseNumber());
-			System.out.println("by name:"+ ticket.getPoliceOfficer().getName()+" number: "+ticket.getPoliceOfficer().getBadgeNumber());
+			System.out.println("Following amount fine is issued: $"+ ticket.getFine(car,meter));
+			StringBuffer buf = new StringBuffer();
+			buf.append("to ");
+			buf.append(ticket.getIllegalCarColor());
+			buf.append(" ");
+			buf.append(ticket.getIllegalCarMake());
+			buf.append(" ");
+			buf.append(ticket.getIllegalCarModel());
+			buf.append(" ");
+			buf.append(ticket.getIllegalCarLicenseNumber());
+			buf.append("\nby police name: ");
+			buf.append(ticket.getPoliceName());
+			buf.append(" number: ");
+			buf.append(ticket.getPoliceBadageNumber());			
+			System.out.println(buf);
 		}
 		else{
 			System.out.println("Time of the car parked in minutes is "+car.getParkedMinutes()+"\nminutes purchased is: "+meter.getMinutesPurchased());
