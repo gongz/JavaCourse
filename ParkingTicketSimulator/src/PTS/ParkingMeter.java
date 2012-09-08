@@ -7,7 +7,9 @@ public class ParkingMeter {
 	
 	public ParkingMeter(double minutesPurchased) {
 		super();
-		this.minutesPurchased = minutesPurchased;
+		if(minutesPurchased>=0)
+			this.minutesPurchased = minutesPurchased;
+		else this.minutesPurchased = 0;
 	}
 
 	public double getMinutesPurchased() {

@@ -1,0 +1,67 @@
+gongz@andrew.cmu.edu
+
+Test Case 1
+A Red Honda Civic with License Number: A1A2A3 purchased 1 minute parking time and 
+parked for 61.1 minutes. 
+Police Tom with badge number 189742178912 checked this car
+
+Result:
+Police find this car is illegally parked
+Get fine $35 for overparking 60.1 mins
+
+*************************************************************************************************
+ 
+Test Case 2
+A Black Toyota Corolla with License Number: B1B2B3 purchased 1 minute parking time and 
+parked for 60.999 minutes. 
+Police Jerry with badge number 14750174380517 checked this car
+
+Result:
+Police find this car is illegally parked
+Get fine $25 for overparking 59.999 mins
+
+*************************************************************************************************
+
+ Test Case 3
+A Red Honda Civic with License Number: A1A2A3 purchased 62 minute parking time and 
+parked for 61.1 minutes. 
+Police Tom with badge number 189742178912 checked this car
+
+Result:
+Police find this car is parking legally
+
+*************************************************************************************************
+
+Test Case 4
+A Black Toyota Corolla with License Number: B1B2B3 purchased 60 minute parking time and 
+parked for 60.999 minutes. 
+Police Jerry with badge number 14750174380517 checked this car
+
+Result:
+Police find this car is illegally parked
+Get fine $25 for overparking 0.999 mins
+
+*************************************************************************************************
+
+Test Case 5
+A Green Toyota Camry with License Number: C1C2C3 trying to input a negative value -1 into parked duration, and purchased 10 mins parking time
+Police Tom with badge number 189742178912 checked this car
+
+Result:
+The system gives Double.MAXVALUE to its parking duration
+Police find this car is illegally parked
+Get fine $2147483647 for overparking 1.7976931348623157E308 mins
+
+*************************************************************************************************
+
+Test Case 6
+A Green Toyota Camry with License Number: C1C2C3 purchased 10 minute parking time and 
+parked for -10 minutes. 
+Police Jerry with badge number 14750174380517 checked this car
+
+Result:
+The system gives 0 to the meter's minutes purchased when it receives a negative value
+Police find this car is llegally parked
+Get fine $25 for overparking 10 mins
+
+*************************************************************************************************

@@ -38,13 +38,19 @@ public class Tester {
 		// TODO Auto-generated method stub
 		ParkedCar car1 = new ParkedCar("Honda","Civic","Red","A1A2A3");
 		ParkedCar car2 = new ParkedCar("Toyota","Corolla","Black","B1B2B3");
+		ParkedCar car3 = new ParkedCar("Toyota","Camry","Green","C1C2C3");
 		
-		ParkingMeter meter1 = new ParkingMeter(-60);		
-		ParkingMeter meter2 = new ParkingMeter(-59);
-		ParkingMeter meter3 = new ParkingMeter(0);
-		ParkingMeter meter4 = new ParkingMeter(1);
-		ParkingMeter meter5 = new ParkingMeter(-120);
-		ParkingMeter meter6 = new ParkingMeter(-119);
+		car1.setParkedDuration(61.1);
+		car2.setParkedDuration(60.999);
+		car3.setParkedDuration(-1);
+		
+		ParkingMeter meter1 = new ParkingMeter(1);		
+		ParkingMeter meter2 = new ParkingMeter(1);
+		
+		ParkingMeter meter3 = new ParkingMeter(62);
+		ParkingMeter meter4 = new ParkingMeter(60);
+		ParkingMeter meter5 = new ParkingMeter(10);
+		ParkingMeter meter6 = new ParkingMeter(-10);
 		
 		PoliceOfficer officer1 = new PoliceOfficer("Tom","189742178912");
 		PoliceOfficer officer2 = new PoliceOfficer("Jerry","14750174380517");
@@ -53,7 +59,8 @@ public class Tester {
 		testRunner(car2,meter2,officer2);
 		testRunner(car1,meter3,officer2);
 		testRunner(car2,meter4,officer1);
-		testRunner(car1,meter5,officer1);
-		testRunner(car2,meter6,officer2);		
+		testRunner(car3,meter5,officer1);
+		car3.setParkedDuration(10);
+		testRunner(car3,meter6,officer2);		
 		}
 	}
