@@ -1,6 +1,6 @@
 package hw2;
 
-public class Statistics {
+public class Statistics implements Validate {
 	private int [] lowscores = new int [5];
 	private int [] highscores = new int [5];
 	private float [] avgscores = new float [5];
@@ -13,29 +13,31 @@ public class Statistics {
 			avgscores[i] = 0;
 		}
 	}
-	static boolean isScoreValid(int score){
+	
+	public boolean isValid(int score){
 		if(score > 100 || score < 0)
 			return false;
 		return true;
 	}
+	
 	void findLow(Student [] a){
 		//This method will find lowest score and store it in an array names lowscores
 		int studentCnt = 0;		
 		while(studentCnt < Statistics.totalNumOfStudent && a[studentCnt]!=null){
 			if(a[studentCnt].getScores()[0] < this.lowscores[0])
-				if(isScoreValid(a[studentCnt].getScores()[0]))
+				if(isValid(a[studentCnt].getScores()[0]))
 					this.lowscores[0] = a[studentCnt].getScores()[0];
 			if(a[studentCnt].getScores()[1] < this.lowscores[1])
-				if(isScoreValid(a[studentCnt].getScores()[1]))
+				if(isValid(a[studentCnt].getScores()[1]))
 					this.lowscores[1] = a[studentCnt].getScores()[1];
 			if(a[studentCnt].getScores()[2] < this.lowscores[2])
-				if(isScoreValid(a[studentCnt].getScores()[2]))
+				if(isValid(a[studentCnt].getScores()[2]))
 					this.lowscores[2] = a[studentCnt].getScores()[2];
 			if(a[studentCnt].getScores()[3] < this.lowscores[3])
-				if(isScoreValid(a[studentCnt].getScores()[3]))
+				if(isValid(a[studentCnt].getScores()[3]))
 					this.lowscores[3] = a[studentCnt].getScores()[3];
 			if(a[studentCnt].getScores()[4] < this.lowscores[4])
-				if(isScoreValid(a[studentCnt].getScores()[4]))	
+				if(isValid(a[studentCnt].getScores()[4]))	
 					this.lowscores[4] = a[studentCnt].getScores()[4];
 			studentCnt++;
 		}
@@ -55,19 +57,19 @@ public class Statistics {
 		int studentCnt = 0;		
 		while(studentCnt < Statistics.totalNumOfStudent && a[studentCnt]!=null){
 			if(a[studentCnt].getScores()[0] > this.highscores[0])
-				if(isScoreValid(a[studentCnt].getScores()[0]))
+				if(isValid(a[studentCnt].getScores()[0]))
 					this.highscores[0] = a[studentCnt].getScores()[0];				
 			if(a[studentCnt].getScores()[1] > this.highscores[1])
-				if(isScoreValid(a[studentCnt].getScores()[1]))
+				if(isValid(a[studentCnt].getScores()[1]))
 					this.highscores[1] = a[studentCnt].getScores()[1];
 			if(a[studentCnt].getScores()[2] > this.highscores[2])
-				if(isScoreValid(a[studentCnt].getScores()[2]))	
+				if(isValid(a[studentCnt].getScores()[2]))	
 					this.highscores[2] = a[studentCnt].getScores()[2];
 			if(a[studentCnt].getScores()[3] > this.highscores[3])
-				if(isScoreValid(a[studentCnt].getScores()[3]))
+				if(isValid(a[studentCnt].getScores()[3]))
 					this.highscores[3] = a[studentCnt].getScores()[3];
 			if(a[studentCnt].getScores()[4] > this.highscores[4])
-				if(isScoreValid(a[studentCnt].getScores()[4]))
+				if(isValid(a[studentCnt].getScores()[4]))
 					this.highscores[4] = a[studentCnt].getScores()[4];
 			studentCnt++;
 		}
@@ -79,7 +81,6 @@ public class Statistics {
 		buffer.append(highscores[3]+" ");
 		buffer.append(highscores[4]);
 		System.out.println(buffer);
-		
 	}	
 
 	void findAvg(Student [] a){
@@ -87,23 +88,23 @@ public class Statistics {
 		int studentCnt = 0;	
 		int [] scoreCnt = new int[5];
 		while(studentCnt < Statistics.totalNumOfStudent && a[studentCnt]!=null){
-			if(isScoreValid(a[studentCnt].getScores()[0])){
+			if(isValid(a[studentCnt].getScores()[0])){
 				this.avgscores[0] += a[studentCnt].getScores()[0];
 				scoreCnt[0]++;
 			}
-			if(isScoreValid(a[studentCnt].getScores()[1])){
+			if(isValid(a[studentCnt].getScores()[1])){
 				this.avgscores[1] += a[studentCnt].getScores()[1];
 				scoreCnt[1]++;
 			}
-			if(isScoreValid(a[studentCnt].getScores()[2])){
+			if(isValid(a[studentCnt].getScores()[2])){
 				this.avgscores[2] += a[studentCnt].getScores()[2];
 				scoreCnt[2]++;
 			}
-			if(isScoreValid(a[studentCnt].getScores()[3])){
+			if(isValid(a[studentCnt].getScores()[3])){
 				this.avgscores[3] += a[studentCnt].getScores()[3];
 				scoreCnt[3]++;
 			}
-			if(isScoreValid(a[studentCnt].getScores()[4])){
+			if(isValid(a[studentCnt].getScores()[4])){
 				this.avgscores[4] += a[studentCnt].getScores()[4];
 				scoreCnt[4]++;
 			}
@@ -119,5 +120,6 @@ public class Statistics {
 		System.out.println(buffer);
 		
 	}
+	
 	
 }

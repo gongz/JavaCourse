@@ -3,10 +3,10 @@ package hw2;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Util {
+public class Util implements Validate{
 	public Util(){}
-	static Student [] readFile(String filename, Student [] students)
-	 {
+	public Student [] readFile(String filename, Student [] students)
+	{
 		 try {
 	            FileReader file = new FileReader("src/"+filename);
 	            BufferedReader buff = new BufferedReader(file);	                
@@ -40,6 +40,12 @@ public class Util {
                 					score[scoreCnt - 2] = -1;
                 				}
                 				continue;
+                			} catch(Exception e){
+                				if(scoreCnt == 1) id = -1;
+                				else{
+                					score[scoreCnt - 2] = -1;
+                				}
+                				continue;
                 			}
                 		}
                 		if(id != -1){
@@ -53,12 +59,23 @@ public class Util {
                 		}                		
                 	}
 	            }
-	            if(studentCnt > Statistics.totalNumOfStudent) System.out.println("Number of student in the file is bigger than the total number of student");
 	            buff.close();
-	        } catch (IOException e) {
+	            if(!isValid(studentCnt)) {
+	            	System.out.println("Number of student is Not Valid!");
+	            	return null;
+	            }
+	            
+	        } catch (Exception e) {
 	            System.out.println("Error -- " + e.toString());
-	        }		 
-		return students;
+	        } 
+		 return students;
 	 }
+	public boolean isValid(int value) {
+		if(value <= Statistics.totalNumOfStudent && value > 0) return true;
+		else{
+			System.out.println("Invalid number = "+ value);
+			return false;
+		}
+	}
 
 }

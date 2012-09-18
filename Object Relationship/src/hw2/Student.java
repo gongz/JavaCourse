@@ -1,6 +1,6 @@
 package hw2;
 
-public class Student {
+public class Student{
 	
 	private int SID;
 	private int scores[] = new int[5];
@@ -21,7 +21,4 @@ public class Student {
 	}
 	//write public get and set methods for
 	//SID and scores
-	//add methods to print values of instance variables.
-	
-	  
 }
