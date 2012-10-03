@@ -14,6 +14,12 @@ public class Option implements Serializable{
 		this.name = name;
 		this.price = price;
 	}
+	
+	public void replaceOption(Option opt){
+		this.setName(opt.getName());
+		this.setPrice(opt.getPrice());
+	}
+	
 	//Read
 	public String getName() {
 		return name;
@@ -33,4 +39,15 @@ public class Option implements Serializable{
 	}
 	//delete
 	//N/A
+	
+	
+	public String toString(){
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getName());
+		buffer.append(" ");
+		buffer.append(this.getPrice());
+		buffer.append("\n");
+		return buffer.toString();
+	}
+	
 }

@@ -1,0 +1,155 @@
+package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class Automobile implements Serializable {
+	
+	private static final long serialVersionUID = -2379187095790289816L;
+	private String modelName;
+	private String make;
+	private int price;	
+	private ArrayList<OptionSet> optionSetList;
+	
+	//Create
+	public Automobile(){
+		this.optionSetList = new ArrayList<OptionSet>();
+	}
+	public String getMake(){
+		return this.make;
+	}
+	public void setMake(String make){
+		this.make = make;
+	}
+	
+	//insertOptionSet
+	public void insertOptionSet(OptionSet ops){
+		OptionSet target = findOptionSet(ops.getName());
+		if(target!=null){
+			target.insertOptionSet(ops);
+		}else{
+			optionSetList.add(ops);
+		}
+	}
+	
+	//insertOption to OptionSet	
+	public void insertOption(OptionSet ops, Option op){
+		OptionSet target = findOptionSet(ops.getName());
+		if(target!=null){
+			target.insertOption(op);
+		}else{
+			optionSetList.add(ops);
+			ops.insertOption(op);
+		}	
+	}
+	
+	//Read
+	public ArrayList<OptionSet> getOptionSetList(){
+		return this.optionSetList;
+	}
+		
+	//read OptionSet
+	public ArrayList<Option> getOptions(String optionSetName){
+		OptionSet target = findOptionSet(optionSetName);
+		if(target!=null){
+			return target.getOptions();
+		}
+		else return null;
+	}
+	
+	//read Option in OptionSet
+	public Option getOption(String optionSetName, String optionName){
+		OptionSet target = findOptionSet(optionSetName);
+		if(target!=null){
+			return target.getOption(optionName);
+		}else{
+			return null;
+		}
+	}
+	
+	//get model name
+	public String getModelName(){
+		return this.modelName;
+	}
+	
+	//get base price
+	public int getBasePrice(){
+		return this.price;
+	}	
+		
+	//update modelName
+	public void setModelName(String modelName){
+		this.modelName = modelName;
+	}	
+	
+	//update base price
+	public void setBasePrice(int price){
+		this.price = price;
+	}	
+	
+	//Update option set list
+	public void setOptionSetList(ArrayList<OptionSet> osl){
+		this.optionSetList = osl;
+	}
+		
+	//Update an optionSet's Name set in list
+	public void setOptionNameInOptionSet(OptionSet os, String newOptionSetName){
+		OptionSet osTarget = findOptionSet(os.getName());
+		if(osTarget!=null){
+			osTarget.setName(newOptionSetName);
+		}		
+	}
+	
+	//update all options in option set
+	public void setOptionsInOptionSet(OptionSet optionSet, ArrayList<Option> options){
+		optionSet.setOptions(options);		
+	}
+	
+	//update an option's name in option set
+	public void updateOption(OptionSet optionSet, String oldOptionName, String newOptionName){
+		optionSet.setOption(oldOptionName, newOptionName);		
+	}	
+	
+	//update an option's price in option set
+	public void updateOption(OptionSet optionSet, String optionName, int newPrice){
+		optionSet.setOption(optionName,newPrice);		
+	}
+	
+	//Delete
+	//	public void deleteOptionSetList(){
+	//		this.optionSetList = null;
+	//		this.optionSetList = new ArrayList<OptionSet>();
+	//	}
+	
+	public void deleteOptionSet(String optionSetName){
+		OptionSet os = findOptionSet(optionSetName);
+		this.getOptionSetList().remove(os);
+	}
+	
+	public void deleteOption(String optionSetName, String optionName){
+		OptionSet os = findOptionSet(optionSetName);
+		os.deleteOption(optionName);		
+	}
+	
+	//Find OptionSet
+	public OptionSet findOptionSet(String osName){
+		for(OptionSet os: this.getOptionSetList()){
+			if(os.getName().equals(osName))
+				return os;
+		}
+		return null;
+	}
+	
+	public String toString(){
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getModelName());
+		buffer.append("\n");
+		buffer.append(this.getBasePrice());
+		buffer.append("\n");
+		for(OptionSet ops:this.getOptionSetList()){
+			buffer.append(ops.toString());
+		}
+		return buffer.toString();
+	}
+}

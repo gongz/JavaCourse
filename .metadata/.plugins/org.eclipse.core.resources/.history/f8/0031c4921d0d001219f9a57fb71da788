@@ -1,0 +1,48 @@
+<NAME>
+
+Focus Wagon ZTW, 1844
+    
+</NAME>
+<COLOR>
+Fort Knox Gold Clearcoat Metallic, 0
+Fort Knox Gold Clearcoat Metallic, 100
+Liquid Grey Clearcoat Metallic, 
+,0
+0
+ Sangria Red Clearcoat Metallic, 0
+</COLOR>
+
+<TRANSMISSION>
+automatic,0
+manual ,-815
+
+</TRANSMISSION>
+
+<BRAKES\TRACTION CONTROL>
+
+Standard,0
+ ABS,400
+  ABS with Advance Trac,1625
+</BRAKES\TRACTION CONTROL>
+
+<SIDE IMPACT AIR BAGS>
+present, 350
+ not present,0
+</SIDE IMPACT AIR BAGS>
+<POWER MOONROOF>
+present,595
+ not present,0
+</POWER MOONROOF>
+<OTHER>
+</OTHER>
+<OTHER2>
+
+</OTHER2>
+
+<COLOR>
+ French Blue Clearcoat Metallic, 0
+ Twilight Blue Clearcoat Metallic, 0
+ CD Silver Clearcoat Metallic, 0
+ Pitch Black Clearcoat,0
+Cloud 9 White Clearcoat,0
+</COLOR>

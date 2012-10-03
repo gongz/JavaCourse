@@ -1,0 +1,10 @@
+package model;
+
+public abstract class Product {
+	private String make;
+	private int price;
+	//private Product(){};
+	public abstract int calculatePrice();
+	
+	
+}

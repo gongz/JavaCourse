@@ -1,0 +1,19 @@
+package system;
+
+import java.util.LinkedHashMap;
+
+public class kbbSystem {
+	private static LinkedHashMap autoLinkedHashMap;
+	
+	private kbbSystem(){
+		
+	}
+	public LinkedHashMap getAutos(){
+		if(autoLinkedHashMap!=null)
+			return autoLinkedHashMap;
+		else{
+			autoLinkedHashMap = new LinkedHashMap();
+			return autoLinkedHashMap;
+		}
+	}
+}

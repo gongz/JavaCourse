@@ -1,0 +1,5 @@
+package model;
+
+public interface CanModifyAll {
+	public abstract void modifyAll();
+}

@@ -3,6 +3,11 @@ package utils;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
+
+import exceptionHandler.illegalFormat;
+import exceptionHandler.illegalName;
+import exceptionHandler.illgalInputFormat;
+import exceptionHandler.illgalPrice;
 import model.*;
 
 public class Util {
@@ -21,6 +26,7 @@ public class Util {
 		      i.printStackTrace();
 		  }
 	}
+	
 	public Automobile readSerializedFile(String fileName){
 		Automobile car = null;
         try
@@ -28,6 +34,18 @@ public class Util {
            FileInputStream fileIn = new FileInputStream("src/"+fileName+".ser");
            ObjectInputStream in = new ObjectInputStream(fileIn);
            car = (Automobile) in.readObject();
+           //get model and base price
+           
+           Option op = car.getOptions("NAME").get(0);
+           
+           car.setModelName(op.getName());
+           car.setBasePrice(op.getPrice());
+           car.deleteOptionSet("NAME");
+           //get make
+           op = car.getOptions("MAKE").get(0);
+           
+           car.setMake(op.getName());
+           car.deleteOptionSet("MAKE");
            in.close();
            fileIn.close();
        }catch(IOException i)
@@ -39,22 +57,24 @@ public class Util {
            c.printStackTrace();
            return null;
        }
+        catch(Exception e){
+    	   System.out.println("Error Serialize -- "+e.toString());
+           return null;
+       }
        return car;
 	}
+	
 	public void writeFile(Automobile serCar, String fileName){
 		Writer writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter("src/"+fileName+".out"));
-			for(OptionSet set : serCar.getOptionSetList()){
-				writer.write("Type: "+set.getName()+"\n");
-				for(Option op : set.getOptions()){
-					writer.write("Name: "+op.getName()+"\nPrice: "+op.getPrice()+"\n");
-				}
-				writer.write("\n");
-			}
+			writer.write(serCar.toString());			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
+		} catch(Exception e){
+			System.out.println("Error writeFile -- "+e.toString());
+		}
+		finally{
 			try {
 				writer.close();
 			} catch (IOException e) {
@@ -73,45 +93,52 @@ public class Util {
 	            boolean eof = false;
 	            String begType = null;
 	            String endType = null;
+	            
+	            //regex pattern <type>
 	            Pattern anchorBegPattern = Pattern.compile("(<([^/])(.+)>)");
-            	Pattern anchorEndPattern = Pattern.compile("(<(\\/)(.+)>)");
+            	//regex pattern </type>
+	            Pattern anchorEndPattern = Pattern.compile("(<(\\/)(.+)>)");
+	            
 	            OptionSet setCreating = null;
             	while (!eof) {
 	                String line = buff.readLine();
-	                if (line == null)
-	                   eof = true;
+	                if (line == null){
+	                   eof = true;	                   
+	                }
 	                else
                     {
+	                	//get rid of space at beginning and ending
 	                	line = line.trim();
 	                	Matcher m = anchorBegPattern.matcher(line);
 	                	if(m.matches()){
+	                		//regex replace <, > and / with nothing
 	                		begType = line.replaceAll("(<|>|/)", "");
-	                		LinkedList<OptionSet> optionSetList = carCreating.getOptionSetList();
-	                		boolean flag = false;	                		
-	                		for(OptionSet set: optionSetList){
-	                			if(set.getName().equals(begType)){
-	                				flag = true;
-	                				setCreating = set;
-	                			}
+	                		try{
+	                			if(begType.length()<1) 
+	                				throw new illegalFormat();
+		                		setCreating = (OptionSet) carCreating.find(begType);
+		                		if(setCreating==null){
+		                			setCreating = new OptionSet(begType);
+		                			carCreating.insertOptionSet(setCreating);
+		                		}
+		                	}catch(illegalFormat e){
+	                			System.out.println("Invalid anchor --"+e.toString());
+	                		}finally{
+	                			continue;
 	                		}
-	                		//the anchor doesn't exist before
-	                		if(!flag){
-	                			//create a OptionSet with name begType
-	                			setCreating = new OptionSet(begType);
-	                			optionSetList.add(setCreating);
-	                		}
-	                		//System.out.println(begType);
-	                		continue;
 	                	}
 	                	m = anchorEndPattern.matcher(line);
 	                	if(m.matches()){	                		 
 	                		endType = line.replaceAll("(<|>|/)", "");
-	                		if(begType!=null && endType.equals(begType)){
-	                			
-	                			//System.out.println(endType);
-	                			//System.out.println("save value to model");
-	                			setCreating = null;
-	                			continue;
+	                		if(begType!=null){
+	                			if(endType.equals(begType)){
+	                				setCreating = null;
+	                				continue;
+	                			}else{
+	                				throw new illgalInputFormat();
+	                			}
+	                		}else{
+	                			throw new illgalInputFormat();
 	                		}
 	                	}
 	                	// if not anchor, we process the options
@@ -125,29 +152,34 @@ public class Util {
 	                		}
 	                		else{
 	                			//Otherwise, assign it as 0
-	                			price = 0;
+	                			throw new illgalPrice();
+	                			
 	                		}
 	                		//if the option name exist, we can finally create the value
 	                		if(name.length()>0){
-	                			//System.out.println(name+" "+price);
-	                			boolean foundFlag = false;
-	                			for(Option op : setCreating.getOptions()){
-	                				if(name.equals(op.getName())){
-	                					foundFlag = true;
-	                					op.setPrice(price);
-	                				}
-	                			}
-	                			
-	                			if(!foundFlag) setCreating.getOptions().add(new Option(name,price));
+	                			setCreating.insertOption(new Option(name,price));
 	                		}
 	                	}catch(NumberFormatException e){
 	                		System.out.println(name);
+	                	}catch(illgalPrice e){
+	                		System.out.println("Invalid Price, set to 0 instead --"+e.toString());
+	                		try{
+	                			if(name.length()>0){
+	                				setCreating.insertOption(new Option(name,0));
+	                			}else{ 
+	                				throw new illegalName();
+	                			}
+	                		}catch(illegalName e1){
+	                			System.out.println("Invalid Name --"+e1.toString());
+	                		}
 	                	}
                     }
 	            }
-	            buff.close();
-	            
-	        } catch (Exception e) {
+	            buff.close();	            
+	        }catch(illgalInputFormat e){
+	        	System.out.println("Invalid Input Format, Not match anchor --"+e.toString());
+	        }
+		 	catch (Exception e) {
 	            System.out.println("Error -- " + e.toString());
 	        } 
 		 return carCreating;

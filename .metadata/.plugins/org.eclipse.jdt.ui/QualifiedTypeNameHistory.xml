@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+<fullyQualifiedTypeName name="model.Automobile"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="system.kbbSystem"/>
+<fullyQualifiedTypeName name="exceptionHandler.illgalInputFormat"/>
+<fullyQualifiedTypeName name="exceptionHandler.illgalPrice"/>
+<fullyQualifiedTypeName name="exceptionHandler.illegalName"/>
+<fullyQualifiedTypeName name="exceptionHandler.duplicateModelName"/>
+<fullyQualifiedTypeName name="exceptionHandler.illegalFormat"/>
+<fullyQualifiedTypeName name="model.Find"/>
+</qualifiedTypeNameHistroy>

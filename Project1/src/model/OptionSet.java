@@ -2,14 +2,14 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class OptionSet implements Serializable{
+public class OptionSet implements Serializable,Find{
 	
 	private static final long serialVersionUID = -3864201267105874672L;
 	private String name;
 	private ArrayList<Option> options;
 	
 	//Create
-	public OptionSet(){
+	public OptionSet() {
 		this.name = null;
 		this.options = new ArrayList<Option>();
 	}
@@ -23,10 +23,28 @@ public class OptionSet implements Serializable{
 		this.name = name;
 		this.options = new ArrayList<Option>(count);
 	}
+		
+	public void insertOption(Option opt){
+		int index = findOption(opt.getName());
+		if(index!=-1){
+			setOption(index,opt.getName(),opt.getPrice());
+		}else{
+			options.add(opt);
+		}
+	}
+	
+	
 	
 	//Update
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void insertOptionSet(OptionSet ops){
+		this.setName(ops.getName());
+		for(Option op : ops.getOptions()){
+			this.insertOption(op);
+		}
 	}
 	
 	public void setOptions(ArrayList<Option> options) {
@@ -35,9 +53,20 @@ public class OptionSet implements Serializable{
 	
 	public void setOption(int i, String name, int price){
 		Option opt = options.get(i);
-		opt.setName(name);
-		opt.setPrice(price);
+		opt.replaceOption(new Option(name,price));		
 	}
+	
+	public void setOption(String name, int price){
+		int index = findOption(name);
+		setOption(index,name,price);		
+	}
+	
+	public void setOption(String oldName, String newName){
+		int index = findOption(oldName);
+		Option opt = options.get(index);
+		opt.setName(newName);
+	}
+	
 	//Read
 	public Option getOption(String name){
 		int index = findOption(name);
@@ -63,7 +92,7 @@ public class OptionSet implements Serializable{
 		return -1;
 	}
 	
-	private int findOption(String name){
+	public int findOption(String name){
 		for(int i = 0;i<options.size();i++){
 			if(options.get(i).getName().equals(name)){
 				return i;
@@ -71,11 +100,31 @@ public class OptionSet implements Serializable{
 		}
 		return -1;
 		
-	}
+	}	
+	
 	
 	//Delete
-	private void deleteOption(String name){
+	public void deleteOption(String name){
 		int index = findOption(name);
 		options.remove(index);
+	}
+	//toString
+	public String toString(){
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getName());
+		buffer.append("\n");
+		for(Option opt:this.getOptions()){
+			buffer.append(opt.toString());
+		}
+		return buffer.toString();
+	}
+
+	@Override
+	public Object find(Object name) {
+		// TODO Auto-generated method stub
+		String findName = name.toString();
+		int index = findOption(findName);
+		if(index!=-1) return options.get(index);
+		else return null;
 	}
 }
