@@ -23,7 +23,7 @@ public class OptionSet implements Serializable,Find{
 		this.name = name;
 		this.options = new ArrayList<Option>(count);
 	}
-		
+	//if the option is already exist, replace it with new values	
 	public void insertOption(Option opt){
 		int index = findOption(opt.getName());
 		if(index!=-1){
@@ -53,7 +53,9 @@ public class OptionSet implements Serializable,Find{
 	
 	public void setOption(int i, String name, int price){
 		Option opt = options.get(i);
-		opt.replaceOption(new Option(name,price));		
+		if(opt!=null){
+			opt.replaceOption(new Option(name,price));
+		}
 	}
 	
 	public void setOption(String name, int price){
@@ -62,9 +64,10 @@ public class OptionSet implements Serializable,Find{
 	}
 	
 	public void setOption(String oldName, String newName){
-		int index = findOption(oldName);
-		Option opt = options.get(index);
-		opt.setName(newName);
+		Option opt = getOption(oldName);
+		if(opt!=null){
+			opt.setName(newName);
+		}
 	}
 	
 	//Read
@@ -106,7 +109,9 @@ public class OptionSet implements Serializable,Find{
 	//Delete
 	public void deleteOption(String name){
 		int index = findOption(name);
-		options.remove(index);
+		if(index!=-1){
+			options.remove(index);
+		}
 	}
 	//toString
 	public String toString(){
@@ -121,10 +126,7 @@ public class OptionSet implements Serializable,Find{
 
 	@Override
 	public Object find(Object name) {
-		// TODO Auto-generated method stub
 		String findName = name.toString();
-		int index = findOption(findName);
-		if(index!=-1) return options.get(index);
-		else return null;
+		return getOption(findName);
 	}
 }

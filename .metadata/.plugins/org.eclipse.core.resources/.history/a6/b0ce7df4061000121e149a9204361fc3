@@ -1,0 +1,66 @@
+package model;
+
+import java.util.ArrayList;
+
+public class EditOptions {
+	private static Automobile targetAuto;
+	public EditOptions(){}
+	public EditOptions(Automobile auto){
+		EditOptions.targetAuto = auto;
+	}
+	
+	public Automobile getTargetAuto(){
+		return EditOptions.targetAuto;
+	}
+	
+	public void SetTargetMobile(Automobile auto){
+		EditOptions.targetAuto = auto;
+	}
+	
+	//Edit automobile: model name
+	public void EditModelName(String newName){
+		EditOptions.targetAuto.setModelName(newName);
+	}
+	
+	//Edit automobile: make
+	public void EditMake(String newMake){
+		EditOptions.targetAuto.setMake(newMake);
+	}
+	
+	//Edit automobile: price
+	public void EditBasePrice(int newPrice){
+		EditOptions.targetAuto.setBasePrice(newPrice);
+	}
+	
+	//Edit automobile: optionSetList
+	public void EditOptionSetList(ArrayList<OptionSet> osl){
+		EditOptions.targetAuto.setOptionSetList(osl);
+	}
+	
+	//Edit OptionSet: name 
+	public void EditOptionNameInOptionSet(String newName, OptionSet os){
+		EditOptions.targetAuto.setOptionNameInOptionSet(os, newName);
+	}
+	
+	//Edit OptionSet: optionsList
+	public void EditOptionsInOptionSet(ArrayList<Option> ops, OptionSet os){
+		EditOptions.targetAuto.setOptionsInOptionSet(os, ops);
+	}
+	
+	//insert OptionSet: option
+	public void AddOptionToOptionSet(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

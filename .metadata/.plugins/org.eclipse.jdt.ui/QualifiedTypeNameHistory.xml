@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="model.Automobile"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
@@ -12,4 +11,7 @@
 <fullyQualifiedTypeName name="exceptionHandler.duplicateModelName"/>
 <fullyQualifiedTypeName name="exceptionHandler.illegalFormat"/>
 <fullyQualifiedTypeName name="model.Find"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
 </qualifiedTypeNameHistroy>

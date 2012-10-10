@@ -2,11 +2,7 @@ package system;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-
-import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
-
 import exceptionHandler.duplicateModelName;
-
 import model.Automobile;
 import model.Find;
 

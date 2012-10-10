@@ -1,0 +1,81 @@
+package model;
+
+import java.util.ArrayList;
+
+
+
+public class EditOptions {
+	
+	private static Automobile targetAuto;
+	public EditOptions(){}
+	public EditOptions(Automobile auto){
+		EditOptions.targetAuto = auto;
+	}
+	
+	public Automobile getTargetAuto(){
+		return EditOptions.targetAuto;
+	}
+	
+	public synchronized void SetTargetMobile(Automobile auto){
+		EditOptions.targetAuto = auto;
+	}
+	
+	//Edit automobile: model name
+	public synchronized void EditModelName(String newName){
+		EditOptions.targetAuto.setModelName(newName);
+	}
+	
+	//Edit automobile: make
+	public synchronized void EditMake(String newMake){
+		EditOptions.targetAuto.setMake(newMake);
+	}
+	
+	//Edit automobile: price
+	public synchronized void EditBasePrice(int newPrice){
+		EditOptions.targetAuto.setBasePrice(newPrice);
+	}
+	
+	//Edit automobile: optionSetList
+	public synchronized void EditOptionSetList(ArrayList<OptionSet> osl){
+		EditOptions.targetAuto.setOptionSetList(osl);
+	}
+	
+	//insert automobile: optionSet
+	public synchronized void AddOptionSetToOptionSetList(OptionSet ops){
+		EditOptions.targetAuto.insertOptionSet(ops);
+	}
+	
+	//update automobile: optionSet
+	public synchronized void UpdateOptionSetInOptionSetList(OptionSet ops){
+		EditOptions.targetAuto.insertOptionSet(ops);
+	}
+	
+	//delete automobile: optionSet
+	public synchronized void DelOptionSetInOptionSetList(String optionSetName){
+		EditOptions.targetAuto.deleteOptionSet(optionSetName);
+	}
+	
+	//Edit OptionSet: name 
+	public synchronized void EditOptionNameInOptionSet(String newName, OptionSet os){
+		EditOptions.targetAuto.setOptionNameInOptionSet(os, newName);
+	}
+	
+	//Edit OptionSet: optionsList
+	public synchronized void EditOptionsInOptionSet(ArrayList<Option> ops, OptionSet os){
+		EditOptions.targetAuto.setOptionsInOptionSet(os, ops);
+	}
+	
+	//insert OptionSet: option
+	public synchronized void AddOptionToOptionSet(String opsName,Option op){
+		EditOptions.targetAuto.insertOption(opsName, op);
+	}
+	
+	//update Option: option
+	public synchronized void UpdateOptionInOptionSet(String opsName, Option op){
+		EditOptions.targetAuto.insertOption(opsName, op);
+	}
+	
+	//delete OptionSet: option
+	public synchronized void DelOptionInOptionSet(String opsName,String opName){
+		EditOptions.targetAuto.deleteOption(opsName, opName);}
+}

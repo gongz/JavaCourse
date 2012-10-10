@@ -1,0 +1,6 @@
+package exceptionHandler;
+
+@SuppressWarnings("serial")
+public class duplicateModelName extends Exception{
+
+}
