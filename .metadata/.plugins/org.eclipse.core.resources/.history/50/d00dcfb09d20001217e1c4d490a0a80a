@@ -1,0 +1,86 @@
+package socket;
+
+import java.net.*;
+import java.util.LinkedHashMap;
+import java.io.*;
+
+import system.kbbSystem;
+
+import model.Automobile;
+
+public class KnockKnockServer {
+	private static ServerSocket serverSocket = null;
+	
+	public static void main(String[] args) throws IOException {
+
+		Socket clientSocket = null;
+		KnockKnockProtocol kkp = new KnockKnockProtocol();
+		Automobile currentEditingCar;
+		try {
+			serverSocket = new ServerSocket(4444);
+		} catch (IOException e) {
+			System.err.println("Could not listen on port: 4444.");
+			System.exit(1);
+		}
+
+		try {
+			clientSocket = serverSocket.accept();
+			System.out.println("client socket received");
+		} catch (IOException e) {
+			System.err.println("Accept failed.");
+			System.exit(1);
+		}
+
+		PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+		ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+		String inputLine, outputLine;
+		outputLine = kkp.processInput("");
+		out.println(outputLine);
+
+		while (true) {
+			if (outputLine.equals("Receiving model")) {
+				outputLine = kkp.processInput(in);
+				out.println(outputLine);
+			} else if(outputLine.equals("Input the name and model of the car you want to edit, e.g.\"BMW, Wagon ZTW\"")){
+				try {
+	                inputLine = (String) in.readObject();
+                } catch (ClassNotFoundException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+                }
+				currentEditingCar = kbbSystem.getAutos().get(in);
+				if(currentEditingCar!=null){
+					out.println("showing");
+					out.println(currentEditingCar.toString());
+					out.println("Press Enter to continue");
+				}else {
+					out.println("Model not found");
+				}
+			} else {
+				try {
+					if(outputLine.equals("Showing")){
+						out.print(new kbbSystem().toString());
+						out.println("End");
+						out.println("Press Enter to continue");
+					}
+					inputLine = (String) in.readObject();
+					if (inputLine == null)
+						break;
+					outputLine = kkp.processInput(inputLine);
+					out.println(outputLine);
+					if (outputLine.equals("Bye."))
+						break;
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		}
+		out.close();
+		in.close();
+		clientSocket.close();
+		serverSocket.close();
+	}
+
+}

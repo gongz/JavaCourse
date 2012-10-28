@@ -2,9 +2,7 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
-<fullyQualifiedTypeName name="model.Automobile"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="system.kbbSystem"/>
 <fullyQualifiedTypeName name="exceptionHandler.illgalInputFormat"/>
 <fullyQualifiedTypeName name="exceptionHandler.illgalPrice"/>
 <fullyQualifiedTypeName name="exceptionHandler.illegalName"/>
@@ -12,6 +10,16 @@
 <fullyQualifiedTypeName name="exceptionHandler.illegalFormat"/>
 <fullyQualifiedTypeName name="model.Find"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
 <fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
+<fullyQualifiedTypeName name="model.EditOptions"/>
+<fullyQualifiedTypeName name="test.Runner"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="utils.Util"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
+<fullyQualifiedTypeName name="java.util.TreeSet"/>
+<fullyQualifiedTypeName name="model.Automobile"/>
+<fullyQualifiedTypeName name="system.kbbSystem"/>
+<fullyQualifiedTypeName name="model.OptionSet"/>
+<fullyQualifiedTypeName name="model.Option"/>
 </qualifiedTypeNameHistroy>

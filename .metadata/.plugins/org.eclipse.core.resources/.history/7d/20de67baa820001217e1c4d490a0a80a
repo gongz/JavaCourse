@@ -1,0 +1,109 @@
+package socket;
+
+import java.net.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.io.*;
+
+import system.kbbSystem;
+
+import model.Automobile;
+import model.Option;
+import model.OptionSet;
+
+public class KnockKnockServer {
+	private static ServerSocket serverSocket = null;
+	
+	public static void main(String[] args) throws IOException {
+
+		Socket clientSocket = null;
+		KnockKnockProtocol kkp = new KnockKnockProtocol();
+		Automobile currentEditingCar = null;
+		ArrayList<Option> currentEditingOps = null;
+		Option currentEditingOp = null;
+		Boolean processing = false;
+		try {
+			serverSocket = new ServerSocket(4444);
+		} catch (IOException e) {
+			System.err.println("Could not listen on port: 4444.");
+			System.exit(1);
+		}
+
+		try {
+			clientSocket = serverSocket.accept();
+			System.out.println("client socket received");
+		} catch (IOException e) {
+			System.err.println("Accept failed.");
+			System.exit(1);
+		}
+
+		PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+		ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+		String inputLine, outputLine;
+		outputLine = kkp.processInput("");
+		out.println(outputLine);
+
+		while (true) {
+			processing = false;
+			if (outputLine.equals("Receiving model")) {
+				outputLine = kkp.processInput(in);
+				out.println(outputLine);
+			} else {
+				try {
+					if(outputLine.equals("Showing")){
+						out.print(new kbbSystem().toString());
+						out.println("End");
+						out.println("Press Enter to continue");
+					}					
+					inputLine = (String) in.readObject();
+//					if (outputLine.equals("Input the name and model of the car you want to edit, e.g.\"BMW Wagon ZTW\"")) {
+//						processing = true;
+//						currentEditingCar = kbbSystem.getAutos().get(inputLine);
+//						if (currentEditingCar != null) {
+//							out.println("Showing");
+//							out.print(currentEditingCar.toString());
+//							out.println("Press Enter to continue");	
+//						} else {
+//							out.println("Model not found, enter 0 to back");
+//						}
+//					}else if(outputLine.equals("Enter an Option Set name, option name and price to edit option name and price, e.g.\"COLOR, green, 100\"")){
+//						processing = true;
+//						if(currentEditingCar!=null){
+////							currentEditingOps = currentEditingCar.getOptions(inputLine);
+////							if(currentEditingOps != null){
+////								out.println("Showing");
+////								StringBuffer buf = new StringBuffer();
+////								for(int i=0;i<currentEditingOps.size();i++){
+////									buf.append(currentEditingOps.get(i).toString());
+////								}
+////								out.println(buf);
+////								out.println("Press Enter to continue");
+////								inputLine = (String) in.readObject();
+////							}else{
+////								out.println("Option Set not found, enter 0 to back");
+////								inputLine = (String) in.readObject();
+////							}
+//						}
+//					}
+					if (inputLine == null)
+						break;
+					
+					outputLine = kkp.processInput(inputLine);
+					out.println(outputLine);
+					
+					if (outputLine.equals("Bye."))
+						break;
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		}
+		out.close();
+		in.close();
+		clientSocket.close();
+		serverSocket.close();
+	}
+
+}

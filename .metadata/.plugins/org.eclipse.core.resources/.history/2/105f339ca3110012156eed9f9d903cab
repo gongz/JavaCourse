@@ -1,8 +1,0 @@
-package model;
-
-public abstract class Product {
-	//private Product(){};
-	protected String make;
-	
-	public abstract int calculatePrice();
-}

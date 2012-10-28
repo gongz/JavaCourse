@@ -1,0 +1,82 @@
+package socket;
+
+import java.io.*;
+import java.net.*;
+
+import model.Automobile;
+
+import utils.Util;
+
+public class KnockKnockClient {
+	public static void createSocket() throws IOException {
+
+		Socket socket = null;
+		ObjectOutputStream out = null;
+		BufferedReader in = null;
+		Boolean displaying = false;
+		try {
+			socket = new Socket(InetAddress.getLocalHost(), 4444);
+
+			out = new ObjectOutputStream(socket.getOutputStream());
+			;
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		} catch (UnknownHostException e) {
+			System.err.println("Don't know about host");
+			System.exit(1);
+		} catch (IOException e) {
+			System.err.println("Couldn't get I/O for the connection to. Please run server first");
+			System.exit(1);
+		}
+
+		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+		String fromServer;
+		String fromUser = null;
+		Automobile car = null;
+		while ((fromServer = in.readLine()) != null) {
+			System.out.println("Server: " + fromServer);
+			if (fromServer.equals("Receiving model")) {
+				if (car != null) {
+					out.writeObject(car);
+					out.flush();
+				} else {
+					System.out.println("car doesn't exist");
+				}
+				continue;
+			} else if (fromServer.equals("Bye.")) {
+				break;
+			} else {
+				if (fromServer.equals("Showing")) {
+					displaying = true;
+				} else if (fromServer.equals("Press Enter to continue")) {
+					displaying = false;
+				} 
+				if (displaying)
+					fromUser = "pass";
+				else
+					fromUser = stdIn.readLine();
+				if (fromServer.equals("Enter file name of the car model")) {
+					String fileName = fromUser;
+					Util ut = new Util();
+					car = ut.readFile(fileName);
+				} else if(fromServer.equals("Input the name and model of the car you want to edit, e.g.\"BMW, Wagon ZTW\"")){
+					fromUser = fromUser.trim().replace(",", "").replace(" ", "");
+				} else if(fromServer.equals("Enter an Option Set name to edit option set, e.g.\"COLOR\"")){
+					fromUser = fromUser.trim().toUpperCase();
+				}
+			}
+			if (fromUser != null) {
+				if(!fromUser.equals("pass")){ 
+					System.out.println("Client: " + fromUser);
+					out.writeObject(fromUser);
+					out.flush();
+				}
+				
+			}
+		}
+
+		out.close();
+		in.close();
+		stdIn.close();
+		socket.close();
+	}
+}

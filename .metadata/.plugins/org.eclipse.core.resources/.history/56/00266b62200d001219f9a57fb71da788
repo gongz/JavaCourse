@@ -1,8 +1,0 @@
-package system;
-
-import java.util.LinkedHashMap;
-
-public class kbbSystem {
-	private LinkedHashMap autoLinkedHashMap;
-	
-}
