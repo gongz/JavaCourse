@@ -55,7 +55,7 @@ public class Protocol {
 				state = EDITM;
 				theOutput = answers[6];
 			} else {
-				theOutput = Strings.SUPP + " 0 or 1; " + theOutput;
+				theOutput = Strings.SUPP + " 0 or 1; ";
 			}
 		} else if (state == EDITM) {
 			theOutput = answers[3] + "Enter 1 to edit option";
@@ -67,7 +67,7 @@ public class Protocol {
 				state = EDITOS;
 				theOutput = answers[7];
 			} else {
-				theOutput = Strings.SUPP + " 0 or 1; " + theOutput;
+				theOutput = Strings.SUPP + " 0 or 1; ";
 			}
 		} else if (state == EDITOS) {
 			theOutput = answers[3];
@@ -76,7 +76,7 @@ public class Protocol {
 				state = EDITM;
 				theOutput = answers[5];
 			} else {
-				theOutput = Strings.SUPP + " 0" + theOutput;
+				theOutput = Strings.SUPP + " 0";
 			}
 		}
 		return theOutput;
