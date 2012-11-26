@@ -22,4 +22,7 @@
 <fullyQualifiedTypeName name="system.kbbSystem"/>
 <fullyQualifiedTypeName name="model.OptionSet"/>
 <fullyQualifiedTypeName name="model.Option"/>
+<fullyQualifiedTypeName name="values.Strings"/>
+<fullyQualifiedTypeName name="droid.monkeys.MapViewCompassDemo"/>
+<fullyQualifiedTypeName name="android.hardware.SensorListener"/>
 </qualifiedTypeNameHistroy>

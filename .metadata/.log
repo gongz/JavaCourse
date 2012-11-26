@@ -251,3 +251,106 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/user/jav
 
 !ENTRY org.eclipse.ui 4 4 2012-10-27 20:24:12.591
 !MESSAGE Invalid preference page path: XML Syntax
+!SESSION 2012-10-31 13:06:49.147 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_35
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/user/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/user/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-10-31 13:07:11.376
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:09:10.816
+!MESSAGE 
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/DroidMonkeys/res' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:320)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:194)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:266)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:249)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$6.run(Sdk.java:1307)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2012-10-31 13:09:10.817
+!MESSAGE Resource '/DroidMonkeys/res' does not exist.
+
+!ENTRY org.eclipse.ui 4 4 2012-10-31 13:10:04.263
+!MESSAGE Invalid preference page path: XML Syntax
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2012-10-31 13:19:44.019
+!MESSAGE mapview.xml: Couldn't resolve resource @string/activity_sample_code
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:44.166
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:44.167
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:44.179
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2012-10-31 13:19:47.598
+!MESSAGE mapview.xml: Couldn't resolve resource @string/activity_sample_code
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:47.603
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:47.604
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:19:47.606
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2012-10-31 13:32:35.400
+!MESSAGE mapview.xml: Couldn't resolve resource @string/activity_sample_code
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:32:35.403
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:32:35.404
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 13:32:35.405
+!MESSAGE mapview.xml: Failed to find style 'mapViewStyle' in current theme
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-10-31 14:42:32.057
+!MESSAGE 
+!STACK 0
+java.io.EOFException
+	at com.google.common.io.ByteStreams.readFully(ByteStreams.java:661)
+	at com.google.common.io.ByteStreams.readFully(ByteStreams.java:641)
+	at com.google.common.io.Files.toByteArray(Files.java:199)
+	at com.android.tools.lint.client.api.LintDriver.checkIndividualClassFiles(LintDriver.java:983)
+	at com.android.tools.lint.client.api.LintDriver.checkClasses(LintDriver.java:920)
+	at com.android.tools.lint.client.api.LintDriver.runFileDetectors(LintDriver.java:785)
+	at com.android.tools.lint.client.api.LintDriver.checkProject(LintDriver.java:661)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:288)
+	at com.android.ide.eclipse.adt.internal.lint.LintJob.run(LintJob.java:151)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2012-11-06 17:07:07.452 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_35
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/user/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/user/javaCourse -keyring /Users/user/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-11-06 17:07:18.953
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 4 4 2012-11-06 17:25:02.054
+!MESSAGE Invalid preference page path: XML Syntax
+!SESSION 2012-11-18 19:46:58.026 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_35
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/user/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/user/javaCourse -keyring /Users/user/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-11-18 19:47:17.639
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 4 4 2012-11-19 14:15:07.660
+!MESSAGE Invalid preference page path: XML Syntax
